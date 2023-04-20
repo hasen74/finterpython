@@ -20,50 +20,16 @@
             <a class="params" href="/form">ADMIN</a>
         </div>
         <div class="timer">
-            <div class="check-text">Vérification de la distanciation dans&nbsp</div>
-            <div class="clock">timer</div>
+       {% block timer %}{% endblock %}
         </div>
-    </div>
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
-    <script>
-        function countdown() {
-            // Bind the timer display to the update function
-            // via the clock variable and set start at 60
-            var clock = document.querySelector('.clock');
-            var time = 10;
-
-            function updateClock() {
-                // Call to the time flask endpoint
-                fetch('/time')
-                    // Retrieve the number and display it
-                    .then(response => response.json())
-                    .then(data => {
-                        time = data.time;
-                        clock.textContent = time;
-                        // At 0 trigger sound function and resets
-                        if (time == 0) {
-                            // playSound();
-                            clearInterval(interval);
-                            countdown();
-                        }
-                    });
-            }
-
-            updateClock();
-            // Call the updateinterval every second
-            var interval = setInterval(updateClock, 1000);
-        }
-
-        countdown();
-    </script>
-    <script>
-        function playSound() {
-            fetch('/sound');
-        }
-    </script>
-
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="capacity-alert" id="capacity-alert" style="display:none">
+            <p>La limite de capacité est atteinte, cliquez pour diffuser l'annonce.</p>
+            <button onclick="playSound()">Diffuser</button>
+          </div>
+        <script src="{{ url_for('static', filename='countdown.js') }}"></script>
 </body>
 
 </html>

@@ -13,12 +13,12 @@
 {% endblock %}
 {% block content %}
 <div class="image">
-  <img src="{{ image1_url }}" alt="Studio 1">
+  <img src="{{ image4_url }}" alt="Studio 4">
   <script>
     // Play sound if distanciation is not respected
     function checkPeople() {
       console.log('check')
-      var checkpeople_url = "/people?studio_image=" + '{{ image1_url }}'
+      var checkpeople_url = "/people?studio_image=" + '{{ image4_url }}'
       fetch(checkpeople_url)
         .then(response => response.json())
         .then(data => {
