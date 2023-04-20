@@ -1,5 +1,12 @@
+html * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: lightcoral;
+  font-family: Arial, Helvetica, sans-serif
 }
 
 a {
@@ -9,8 +16,36 @@ a {
 }
 
 img {
-  height: 300px;
-  width: 500px;
+  height: 240px;
+  width: 400px;
+}
+
+select {
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+button {
+  padding: 5px;
+  background-color: grey;
+  color: white;
+  border: none
+}
+
+input label {
+  margin: 5px;
+  padding: 5px;
+}
+
+p {
+  padding-bottom: 5px;
+}
+
+.main-title {
+  margin: 20px 0;
 }
 
 .topnav {
@@ -19,14 +54,33 @@ img {
   align-items: center;
 }
 
+.max-capacity {
+  position: absolute;
+  left: 20px;
+}
+
 .timer {
   display: flex;
   padding-top: 20px;
 }
 
 .content {
-  padding: 100px 0px;
+  padding: 40px 0px;
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+
+.select-lang {
+  position: absolute;
+  right: 20px;
+}
+
+.select-selected select {
+  background-color: DodgerBlue;
+}
+
+.capacity-alert {
+  justify-content: center;
+  text-align: center;
 }
