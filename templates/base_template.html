@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>France Inter Distanciation Sociale</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="topnav">
+        <div class="main-title">
+            <h1>STUDIOS RADIO</h1>
+        </div>
+        <div class="studio-list">
+            <a class="studio" href="/">STUDIO 1</a>
+            <a class="studio" href="/studio2">STUDIO 2</a>
+            <a class="studio" href="/studio3">STUDIO 3</a>
+            <a class="studio" href="/studio4">STUDIO 4</a>
+            <a class="studio" href="/studio5">STUDIO 5</a>
+            <a class="params" href="/form">ADMIN</a>
+        </div>
+        <div class="timer">
+            <div class="check-text">Vérification de la distanciation dans&nbsp</div>
+            <div class="clock">timer</div>
+        </div>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        function countdown() {
+            // Bind the timer display to the update function
+            // via the clock variable and set start at 60
+            var clock = document.querySelector('.clock');
+            var time = 10;
+
+            function updateClock() {
+                // Call to the time flask endpoint
+                fetch('/time')
+                    // Retrieve the number and display it
+                    .then(response => response.json())
+                    .then(data => {
+                        time = data.time;
+                        clock.textContent = time;
+                        // At 0 trigger sound function and resets
+                        if (time == 0) {
+                            // playSound();
+                            clearInterval(interval);
+                            countdown();
+                        }
+                    });
+            }
+
+            updateClock();
+            // Call the updateinterval every second
+            var interval = setInterval(updateClock, 1000);
+        }
+
+        countdown();
+    </script>
+    <script>
+        function playSound() {
+            fetch('/sound');
+        }
+    </script>
+
+</body>
+
+</html>
